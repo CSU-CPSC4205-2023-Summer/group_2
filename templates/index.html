@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Top Songs</title>
+</head>
+<body>
+    <h1>Top Songs by Popularity</h1>
+    <a href="/" class="top-songs-button">Top Songs</a>
+    <form method="post">
+        <label for="search_option">Search Option:</label><br>
+        <input type="radio" id="artist_option" name="search_option" value="artist" {% if search_option == 'artist' %}checked{% endif %}>
+        <label for="artist_option">Artist</label><br>
+        <input type="radio" id="year_option" name="search_option" value="year" {% if search_option == 'year' %}checked{% endif %}>
+        <label for="year_option">Year</label><br><br>
+        <label for="search_query">Search Query:</label>
+        <input type="text" id="search_query" name="search_query" value="{{ search_query }}"><br><br>
+        <input type="submit" value="Search">
+    </form>
+    {% if top_songs %}
+        <div id="topSongs">
+            <h2>Top 10 Songs:</h2>
+            {{ top_songs|safe }}
+        </div>
+    {% endif %}
+</body>
+</html>
