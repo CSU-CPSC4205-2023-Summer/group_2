@@ -29,9 +29,13 @@
             <a class="nav-link" href="/TopSongs">Top Songs</a>
           </li>
         </ul>
-        </ul>
       </div>
     </nav><br/><br/><br/>
-    <h1>My Library</h1><br/><br/><br/>
+    <h1>My Library <img src="{{url_for('static', filename='volume.png')}}" width="40" height="40" /></h1><br/><br/><br/>
+    <div style="background-color: #DCDCDC; margin: 40px; text-align: center;"  class="p-3">
+      <img src="{{url_for('static', filename='pause.png')}}" width="40" height="40" />
+      <img src="{{url_for('static', filename='play.png')}}" width="40" height="40" />
+      <img src="{{url_for('static', filename='fastforward.png')}}" width="40" height="40" />
+    </div>
   </body>
 </html>
