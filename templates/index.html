@@ -15,9 +15,11 @@
         }
         p {
           font-weight: bold;
+          margin-left: 5%;
         }
-        h3 {
+        if {
             font-weight: lighter;
+            margin-left: 5%;
         }
     </style>
 </head>
@@ -48,11 +50,10 @@
         <input type="submit" value="Search">
     </form><br/>
     {% if top_songs %}
-        <div id="topSongs">
+        <div id="topSongs" style="margin-left: 5%;">
             <h3>Top 10 Songs:</h3>
             {{ top_songs|safe }}
         </div>
     {% endif %}
 </body>
 </html>
-
