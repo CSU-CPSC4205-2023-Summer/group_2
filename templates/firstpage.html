@@ -16,6 +16,9 @@
       }
       p {
         font-weight: bold;
+        border: solid 1pt rgb(49, 49, 141);
+        margin: 30px;
+        padding: 30px;
       }
       * {
         box-sizing: border-box;
@@ -66,12 +69,17 @@
       </div>
     </nav><br/><br/><br/>
     <h1>Group 2</h1><br/><br/><br/>
-    <div style="background-color: #DCDCDC; margin: 40px;"  class="p-3">
-      <label><strong>Feature Top Songs</strong></label><br/><br/>
-      <form class="example" action="/action_page.php">
-        <input type="text" placeholder="Search" name="search">
-        <button type="submit"><i class="fa fa-search"></i></button>
-      </form>
+    <div class="row justify-content-around">
+      <div class="col-4">
+        <p>Top Songs<br/><br/>
+          The Top Songs link will take you to a search query. The search query will allow you to search by artist or the year for the top 10 songs.
+        </p>
+      </div>
+      <div class="col-4">
+        <p>My Library<br/><br/>
+          The Library link will take you to the library page
+        </p>
+      </div>
     </div>
   </body>
 </html>
