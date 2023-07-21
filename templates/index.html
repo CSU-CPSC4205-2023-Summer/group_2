@@ -1,61 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Top Songs</title>
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-      <style>
-        h1 {
-            text-align: center;
-            font-weight: bolder;
+<html>
+<head>
+    <title>Top Songs</title>
+</head>
+<body>
+    <h1>Top Songs</h1>
+    <form method="POST" action="/TopSongs">
+        <input type="radio" name="search_option" value="artist" checked> Artist
+        <input type="radio" name="search_option" value="year"> Year
+        <input type="text" name="search_query">
+        <input type="submit" value="Search">
+    </form>
+    <div>
+        {% if top_songs %}
+            {{ top_songs | safe }}
+        {% endif %}
+    </div>
+    <script>
+        // Function to pause all other audio elements when a new one is played
+        function pauseOtherAudios(currentAudio) {
+            const audioElements = document.querySelectorAll('audio');
+            audioElements.forEach(audio => {
+                if (audio !== currentAudio) {
+                    audio.pause();
+                }
+            });
         }
-        body {
-          background-color: #BBE2EB;
+
+        // Function to play or pause the audio when the play button is clicked
+        function toggleAudio(audio, playButton) {
+            if (audio.paused) {
+                pauseOtherAudios(audio);
+                audio.play();
+                playButton.innerText = 'Pause';
+            } else {
+                audio.pause();
+                playButton.innerText = 'Play';
+            }
         }
-        p {
-          font-weight: bold;
-          margin-left: 5%;
-        }
-        if {
-            font-weight: lighter;
-            margin-left: 5%;
-        }
-        form {
-          margin-left: 5%;
-        }
-      </style>
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/TopSongs">Top Songs</a>
-          </li>
-        </ul>
-      </div>
-    </nav><br/><br/><br/>
-    <h1>Top Songs by Popularity</h1>
-    <a href="/" class="top-songs-button" style="margin-left: 5%;">Top Songs</a><br/>
-    <form method="post">
-      <label for="search_option">Search Option:</label><br/>
-      <input type="radio" id="artist_option" name="search_option" value="artist" {% if search_option == 'artist' %}checked{% endif %}>
-      <label for="artist_option">Artist</label><br>
-      <input type="radio" id="year_option" name="search_option" value="year" {% if search_option == 'year' %}checked{% endif %}>
-      <label for="year_option">Year</label><br><br>
-      <label for="search_query">Search Query:</label>
-      <input type="text" id="search_query" name="search_query" value="{{ search_query }}"><br><br>
-      <input type="submit" value="Search">
-    </form><br/>
-    {% if top_songs %}
-      <div id="topSongs" style="margin-left: 5%;">
-        <h3>Top 10 Songs:</h3>
-        {{ top_songs|safe }}
-      </div>
-    {% endif %}
-  </body>
+
+        // Add click event listeners to each play button
+        const playButtons = document.querySelectorAll('.play-button');
+        playButtons.forEach(button => {
+            const audio = button.nextElementSibling;
+            button.addEventListener('click', () => toggleAudio(audio, button));
+        });
+    </script>
+</body>
 </html>
