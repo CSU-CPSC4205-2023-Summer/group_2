@@ -18,6 +18,10 @@ sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 def home():
     return render_template("firstpage.html")
 
+@app.route("/library")
+def library():
+    return render_template("thirdpage.html")
+
 @app.route('/TopSongs', methods=['GET', 'POST'])
 def get_top_songs():
     if request.method == 'POST':
@@ -55,7 +59,7 @@ def get_top_songs():
         if audio_preview_url is not None:
             top_songs_html += f"""
                 <p>{i+1}. {track} by {artist}</p>
-                <img src="{cover_url}" alt="Cover Art" width="200" height="200">
+                <img src="{cover_url}" alt="Cover Art" width="200" height="200" style="margin-left: 5%">
                 <button class="play-button">Play</button>
                 <audio>
                     <source src="/proxy_audio?url={audio_preview_url}" type="audio/mpeg">
@@ -65,7 +69,7 @@ def get_top_songs():
         else:
             top_songs_html += f"""
                 <p>{i+1}. {track} by {artist}</p>
-                <img src="{cover_url}" alt="Cover Art" width="200" height="200">
+                <img src="{cover_url}" alt="Cover Art" width="200" height="200" style="margin-left: 5%">
                 <p>No audio preview available</p>
             """
 
